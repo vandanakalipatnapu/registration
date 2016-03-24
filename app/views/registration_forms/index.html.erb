@@ -1,6 +1,93 @@
-<html>
-	<h2>you have entered wrong email or password....</h2>
+
+<center><h2 style="color:red">Registration Form</h2></center>
+
+<div class="container">
+<%= form_for :registration_forms,url:registration_forms_path do |r| %>
+
+  <div class="form-group text-success">
+    <%= r.label :Student_Name, class: "col-sm-4 control-label "%>
+    <%= r.text_field :name, class:"col-sm-6 form-control" %><br />
+  </div>
+
+   <div class="form-group text-success">
+    <%= r.label :gender  %><br/>
+    <%= r.radio_button :gender, "male" %>
+    <%= r.label :gender, "Male", :checked =>false  %>
+    <%= r.radio_button :gender, "female" %>
+    <%= r.label :gender, "Female", :checked => true %>
+   </div>   
+
+  <div class="form-group text-success">
+    <%= r.label :Email, class: "col-sm-4 control-label "%>
+    <%= r.email_field :email, class:"col-sm-6 form-control" %>
+  </div>
+
+  <div class="form-group text-success">
+    <%= r.label :password, class: "col-sm-4 control-label "%>
+    <%= r.password_field :password, class:"col-sm-6 form-control" %>
+  </div>
+
+  <div class="form-group text-success">
+    <%= r.label :Roll_Number, class: "col-sm-4 control-label "%>
+    <%= r.text_field :rollno, class:"col-sm-6 form-control" %>
+  </div>
+
+  <div class="form-group text-success">
+    <%= r.label :Phone_Number, class: "col-sm-4 control-label "%>
+    <%= r.text_field :phno, class:"col-sm-6 form-control" %>
+  </div>
+
+  <div class="form-group text-success">
+    <%= r.label :qualification,class:"control-label"%><br>
+    <%= r.select(:qualification, [['B.Tech', 'B.Tech'],['M.B.A', 'M.B.A'],['M.C.A', 'M.C.A'],['M.S.C','M.S.C']],{ :prompt => "Please select"},{ :multiple => true}) %>    
+  </div>
+
+ <!--  <div class="form-group text_success">
+    <%= r.label :course,class:"control-label" %> <br />
+    <%= r.check_box :course %> <b>c</b> <br/>
+  </div> -->
+
+   
+  <div class="form-group text-success">
+    <%= r.label :Address, class: "col-sm-4 control-label "%>
+    <%= r.text_area :address, class:"col-sm-6 form-control",cols: "5", rows: "5" %>
+  </div>
+
+
+  <%= r.submit "create",class: "btn btn-info" %>
+<%end%>
 
 
 
-</html>
+<div class="footer"></div>
+</div>
+
+<center><h1 style="color:red">Show</h1></center>
+<center><div class="table-responsive table-hover table-striped table-condenced table-bordered">
+  <table class="table">
+  <tr>
+    <th>name</th>                                     
+    <th>roll no</th>
+    <th>email</th>
+    <th>ph no</th>
+    <th>address</th>
+    <th>qualification</th>
+    <th>gender</th>
+    
+
+  </tr>
+ <% @registration_form.each do |r| %>
+    <tr>
+      <td><%= r.name %></td>
+      <td><%= r.rollno %></td>
+      <td><%= r.email %></td>
+      <td><%= r.phno %></td>
+      <td><%= r.address %></td>
+      <td><%= r.qualification %></td>
+      <td><%= r.gender %></td>
+       
+
+  </tr>
+  <%end%>
+</table></center>
+</div>
